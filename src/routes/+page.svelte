@@ -1,6 +1,6 @@
 <script lang="ts">
     import PokeCard from '../components/pokeCard/pokeCard.svelte';
-    export let data; 
+    export let data
 </script>
 
 <main>
