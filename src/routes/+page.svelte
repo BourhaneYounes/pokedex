@@ -3,13 +3,37 @@
     import { generations } from './generations';
     export let data
     let searchTerm: string = ""
-    let filteredPokemon: any[]= []
+    let filteredPokemon: any[]= data.pokemons
 
     $: {
         if(searchTerm){
             filteredPokemon = data.pokemons.filter(pokemon => pokemon.name.includes(searchTerm.toLowerCase()))
-        }else {
-            filteredPokemon = [...data.pokemons]
+        }else{
+            filteredPokemon = data.pokemons
+        }
+    }
+
+    function displayPokemon(id: number){
+        if (id === 1){
+            filteredPokemon = data.pokemons.slice(0, 151)
+        }else if (id === 2){
+            filteredPokemon = data.pokemons.slice(151, 251)
+        }else if (id === 3){
+            filteredPokemon = data.pokemons.slice(251, 386)
+        }else if (id === 4){
+            filteredPokemon = data.pokemons.slice(386, 493)
+        }else if (id === 5){
+            filteredPokemon = data.pokemons.slice(493, 649)
+        }else if (id === 6){
+            filteredPokemon = data.pokemons.slice(649, 721)
+        }else if (id === 7){
+            filteredPokemon = data.pokemons.slice(721, 809)
+        }else if (id === 8){
+            filteredPokemon = data.pokemons.slice(809, 905)
+        }else if (id === 9){
+            filteredPokemon = data.pokemons.slice(905, 1021)
+        }else if (id === 0){
+            filteredPokemon = data.pokemons
         }
     }
 
@@ -23,13 +47,13 @@
         <div class="mx-auto">
             <div class="flex flex-row m-2 my-4">
                {#each generations as generation (generation.id)}
-                    <button class="text-xs mx-2 border border-gray-200 bg-gray-300 
-                    px-4 py-1 rounded hover:shadow-md w-36">{generation.name} <br> {generation.main_region}</button>
+                    <button class="text-xs mx-2 bg-gray-300 
+                    px-4 py-1 rounded shadow-sm hover:shadow-md w-36" on:click|preventDefault={() => displayPokemon(generation.id)}>{generation.name} <br> {generation.main_region}</button>
                {/each}
             </div>
             <div class="flex flex-row">
                 <button class="text-xs border border-gray-200 bg-gray-300 
-                px-4 py-1 rounded hover:shadow-md w-20 mx-auto my-2">All</button>
+                px-4 py-1 rounded hover:shadow-md w-20 mx-auto my-2" on:click|preventDefault={() => displayPokemon(0)}>All</button>
             </div>
         </div>
         <div class="grid gap-5 md:grid-cols-6 grid-cols-1">

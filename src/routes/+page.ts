@@ -5,7 +5,7 @@ type IndexPokemon = {
 
 
 export const load = async ({ fetch }) => {
-    const resp = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=1010')
+    const resp = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=1021')
     const data = await resp.json()
     const pokemons: Pokemon[] = data.results.map((pokemon: IndexPokemon) => {
         const splitUrl = pokemon.url.split('/')
